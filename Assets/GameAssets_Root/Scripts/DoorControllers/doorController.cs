@@ -69,7 +69,12 @@ public class doorController : MonoBehaviour
     public void UnlockDoor()
     {
         Interactable interactable = door.GetComponent<Interactable>();
-        if (!IsLockedDoor) OpenDoor();
+        if (!IsLockedDoor)
+        {
+            interactable.promptMsg = string.Empty;
+            OpenDoor();
+            
+        }
 
         if(inventory.Inventory.Contains(keyScript.Key_ItemName))
         {
@@ -80,7 +85,7 @@ public class doorController : MonoBehaviour
             interactable.promptMsg = "Door Has Been Unlocked!";
 
         }
-        else
+        if(IsLockedDoor)
         {
             interactable.promptMsg = $"Door Is Locked, Find The {keyScript.Key_ItemName}";
         }
