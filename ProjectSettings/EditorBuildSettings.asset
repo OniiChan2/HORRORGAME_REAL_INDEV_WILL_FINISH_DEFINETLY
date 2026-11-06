@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Sandbox_TestingHall.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: 0070e79c51529db479b095cc15eec6a8, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: ebff1414cd36aa04fa15d5b73d6b2c36, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: cd3261b5e57016446aaf66a57cd998b1, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c8fb38f514022e04e95763b885a435dd, type: 3}
