@@ -4,8 +4,8 @@ public class playerCameraLook : MonoBehaviour
 {
 
     public Camera cam;
-    private float xRotation = 0f;
 
+    private float xRotation = 0f;
     //mouse sensitivity 
     public float xSense = 30f;
     public float ySense = 30f;

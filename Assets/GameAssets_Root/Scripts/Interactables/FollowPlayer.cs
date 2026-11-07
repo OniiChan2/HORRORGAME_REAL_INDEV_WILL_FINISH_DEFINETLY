@@ -33,7 +33,6 @@ public class FollowPlayer : MonoBehaviour
         {
             PlayerInRange = true;
             playerTransform = other.transform;
-            Debug.Log("Player In Range");
         }
         
     }
@@ -45,7 +44,6 @@ public class FollowPlayer : MonoBehaviour
         {
             PlayerInRange = !PlayerInRange;
             playerTransform = null;
-            Debug.Log("Player Not In Range");
         }
 
     }

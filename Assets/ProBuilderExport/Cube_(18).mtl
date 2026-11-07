@@ -1,0 +1,20 @@
+newmtl Fire
+Kd 0.9333334 0.6352941 0.1921569
+d 1
+
+newmtl Cake_Base
+Kd 0.3962264 0.208059 0.1252224
+d 1
+
+newmtl Cake_Frosting
+Kd 0.8396226 0.2019846 0.7512563
+d 1
+
+newmtl CherryRed
+Kd 0.764151 0.2054556 0.2054556
+d 1
+
+newmtl Candle
+Kd 1 1 1
+d 1
+

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class playerMovement : MonoBehaviour
@@ -5,7 +6,11 @@ public class playerMovement : MonoBehaviour
 
     private CharacterController Controller;
     private Vector3 playerSpeed;
-    public Camera playerCam; 
+    public Camera playerCam;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float playerAccelerationRate;
+    [SerializeField] private Transform CameraTransform;
+    [SerializeField] private Transform playerRootPosition;
 
     //player controller values 
     private int crouchHeight = 1;
@@ -13,22 +18,25 @@ public class playerMovement : MonoBehaviour
     private float velocity = 5f;
     private float jumpForce = 1f;
     private float crouchTimer = 1;
-    private float standingCamY = 1.7f;
+    private float standingCamY = 1.858f;
+    private float playerTargetSpeed; 
     private bool isGrounded;
     private bool isSprinting;
-    private bool isCrouching ;
+    private bool isCrouching;
     private bool lerpCrouch;
+    private float moveSpeed;
     private bool isCursorLocked; //defaults the cursor to be locked when the game loads
 
     public float cameraHeightDelta = 0.7f;
     public float gravityValue = -9.81f;
+    
 
 
 
     void Start()
     {
         Controller = GetComponent<CharacterController>();
-
+        animator = GetComponent<Animator>();
         //sets to cursor to be locked when the game starts 
         isCursorLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -37,9 +45,9 @@ public class playerMovement : MonoBehaviour
   
     void Update()
     {
+        //ensures that the player is grounded during the crouch animation
         isGrounded = Controller.isGrounded;
-        //Crouch Animation and/or mechanic 
-        isGrounded = Controller.isGrounded;   //ensures that the player is grounded during the crouch animation
+        //Crouch Animation and/or mechanic    
         if (lerpCrouch)
         {
             crouchTimer += Time.deltaTime;
@@ -53,7 +61,6 @@ public class playerMovement : MonoBehaviour
                     playerCam.transform.localPosition, new Vector3(0f, standingCamY - cameraHeightDelta, 0f),
                     crouchProgress
                     );
-
             }
             else
             {
@@ -74,6 +81,9 @@ public class playerMovement : MonoBehaviour
                 crouchTimer = 0f;
             }
         }
+
+        
+
     }
 
     //Take Input from PlayerInputManager.cs and apply to character controller
@@ -92,6 +102,14 @@ public class playerMovement : MonoBehaviour
         }
 
         Controller.Move(playerSpeed * Time.deltaTime);
+
+        playerTargetSpeed = input.magnitude * velocity;
+
+        moveSpeed = Mathf.MoveTowards(moveSpeed, playerTargetSpeed, playerAccelerationRate * Time.deltaTime);
+
+        animator.SetFloat("Velocity", moveSpeed);
+        
+
     }
     
     public void playerJump()
@@ -105,15 +123,18 @@ public class playerMovement : MonoBehaviour
 
     public void playerSprint()
     {
+      
         //Player's sprint function, changes player speed if sprinting = true 
         isSprinting = !isSprinting;
         if (isSprinting)
         {
             velocity = 8f;
+           
         }
         else
         {
             velocity = 5f;
+
         }
     }
 
