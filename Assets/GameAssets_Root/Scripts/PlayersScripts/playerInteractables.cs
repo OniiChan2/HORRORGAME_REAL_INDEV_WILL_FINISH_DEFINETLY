@@ -1,9 +1,10 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.LowLevel;
 
 public class playerInteractables : MonoBehaviour
 {
-    private Camera cam;
+    public Camera cam;
     [SerializeField] private LayerMask mask;
     [SerializeField] GameObject UI_playerImage; //Player's crosshair 
     //Ray cast Variables 

@@ -32,7 +32,8 @@ public class playerInputManager : MonoBehaviour
         //Move Character model based on movement actions. 
         movement.movementProcess(onFoot.playerMovement.ReadValue<Vector2>());
         //Move Character model and camera based on mouse
-        look.lookProcess(onFoot.playerLook.ReadValue<Vector2>());
+        look.lookProcess(onFoot.playerLook.ReadValue<Vector2>(), onFoot.playerMovement.ReadValue<Vector2>());
+
     }
 
 

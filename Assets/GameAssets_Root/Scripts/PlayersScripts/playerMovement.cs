@@ -1,27 +1,30 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class playerMovement : MonoBehaviour
 {
 
     private CharacterController Controller;
+    private playerCameraLook playerCameraLook;
     private Vector3 playerSpeed;
     public Camera playerCam;
     [SerializeField] private Animator animator;
     [SerializeField] private float playerAccelerationRate;
-    [SerializeField] private Transform CameraTransform;
-    [SerializeField] private Transform playerRootPosition;
+   
 
-    //player controller values 
+    //player controller values
     private int crouchHeight = 1;
-    private int standingHeight = 2; 
+    private int standingHeight = 2;
     private float velocity = 5f;
+    private float RunVelocity = 8f;
     private float jumpForce = 1f;
     private float crouchTimer = 1;
     private float standingCamY = 1.858f;
     private float playerTargetSpeed; 
     private bool isGrounded;
-    private bool isSprinting;
+    public bool isSprinting;
     private bool isCrouching;
     private bool lerpCrouch;
     private float moveSpeed;
@@ -29,6 +32,7 @@ public class playerMovement : MonoBehaviour
 
     public float cameraHeightDelta = 0.7f;
     public float gravityValue = -9.81f;
+
     
 
 
@@ -80,12 +84,12 @@ public class playerMovement : MonoBehaviour
                 lerpCrouch = false;
                 crouchTimer = 0f;
             }
-        }
 
-        
+        }
 
     }
 
+   
     //Take Input from PlayerInputManager.cs and apply to character controller
 
     public void movementProcess(Vector2 input)
@@ -129,15 +133,19 @@ public class playerMovement : MonoBehaviour
         if (isSprinting)
         {
             velocity = 8f;
+          
+            
            
         }
         else
         {
             velocity = 5f;
+            
 
         }
     }
 
+    //Lets the player crouch 
     public void playerCrouch()
     {
         isCrouching = !isCrouching;
@@ -146,6 +154,9 @@ public class playerMovement : MonoBehaviour
 
     }
 
+    
+    
+    //Locks the cursor 
     public void lockCursor()
     {
         if (!isCursorLocked && Cursor.lockState == CursorLockMode.None) {
