@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.UIElements;
 
 
 public class doorController : MonoBehaviour
@@ -13,10 +14,11 @@ public class doorController : MonoBehaviour
 
     //Reference to Player Invetoryl 
     [SerializeField] private playerInventory inventory;
-    [SerializeField] private KeyScript keyScript;
+    public ItemScriptableObject KeyID;
+    
 
     //General variables 
-   
+
     [SerializeField] private bool IsDoorOpening;
     [SerializeField] private bool IsLockedDoor;
 
@@ -76,18 +78,18 @@ public class doorController : MonoBehaviour
             
         }
 
-        if(inventory.Inventory.Contains(keyScript.Key_ItemName))
+        if(inventory.Inventory.Contains(KeyID))
         {
             OpenDoor();
-            inventory.Inventory.Remove(keyScript.Key_ItemName);
-            Debug.Log($"Item: {keyScript.Key_ItemName} Rmoeve from Inventory");
+            inventory.Inventory.Remove(KeyID);
+            Debug.Log($"Item: {KeyID.Key_ItemName} Rmoeve from Inventory");
             IsLockedDoor = false;
             interactable.promptMsg = "Door Has Been Unlocked!";
 
         }
         if(IsLockedDoor)
         {
-            interactable.promptMsg = $"Door Is Locked, Find The {keyScript.Key_ItemName}";
+            interactable.promptMsg = $"Door Is Locked, Find The {KeyID.Key_ItemName}";
         }
 
          

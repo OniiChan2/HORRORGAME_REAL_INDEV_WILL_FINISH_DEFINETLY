@@ -9,7 +9,7 @@ public class playerMovement : MonoBehaviour
     private CharacterController Controller;
     private playerCameraLook playerCameraLook;
     private Vector3 playerSpeed;
-    public Camera playerCam;
+    public Transform playerCam;
     [SerializeField] private Animator animator;
     [SerializeField] private float playerAccelerationRate;
    

@@ -6,9 +6,11 @@ public class playerInputManager : MonoBehaviour
 
     private PlayerInput playerInput;
     public PlayerInput.OnFootActions onFoot;
+
     private playerMovement movement;
     private playerHealth health;
-    private playerCameraLook look; 
+    private playerCameraLook look;
+    private playerInteractables interactables; 
 
     void Awake()
     {
@@ -17,6 +19,7 @@ public class playerInputManager : MonoBehaviour
         movement = GetComponent<playerMovement>();
         look = GetComponent<playerCameraLook>();
         health = GetComponent<playerHealth>();
+        interactables = GetComponent<playerInteractables>();
 
         onFoot.testHeal.performed += ctx => health.healPlayer();
         onFoot.testDamage.performed += ctx => health.takeDamage();
@@ -24,7 +27,7 @@ public class playerInputManager : MonoBehaviour
         onFoot.playerSprint.performed += ctx => movement.playerSprint();
         onFoot.playerCrouch.performed += ctx => movement.playerCrouch();
         onFoot.LockCursor.performed += ctx => movement.lockCursor();
-
+        onFoot.dropItem.performed += ctx => interactables.DropItem();
     }
 
     private void Update()

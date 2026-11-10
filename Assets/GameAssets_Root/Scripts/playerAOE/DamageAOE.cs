@@ -20,7 +20,7 @@ public class AOE : MonoBehaviour
             if (HoTCoroutine == null) 
             { 
                 HoTCoroutine = StartCoroutine(HealOverTime(other));
-                Debug.Log("DOT Started, Player is In Range");
+                
             }
         }
     }
@@ -36,7 +36,7 @@ public class AOE : MonoBehaviour
                 StopCoroutine(HoTCoroutine);
                 HoTCoroutine = null;
             }
-            Debug.Log("No longer in range of AOE");
+         
         }
     }
 

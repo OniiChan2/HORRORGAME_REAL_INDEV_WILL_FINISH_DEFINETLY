@@ -172,6 +172,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""dropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""24cbe825-ca67-454c-9d77-2816b3ebe30c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -315,6 +324,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LockCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd74df49-3a6c-4e06-9324-7722f12d0387"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""dropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -850,6 +870,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_testDamage = m_OnFoot.FindAction("testDamage", throwIfNotFound: true);
         m_OnFoot_testHeal = m_OnFoot.FindAction("testHeal", throwIfNotFound: true);
         m_OnFoot_LockCursor = m_OnFoot.FindAction("LockCursor", throwIfNotFound: true);
+        m_OnFoot_dropItem = m_OnFoot.FindAction("dropItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -952,6 +973,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_testDamage;
     private readonly InputAction m_OnFoot_testHeal;
     private readonly InputAction m_OnFoot_LockCursor;
+    private readonly InputAction m_OnFoot_dropItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -999,6 +1021,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/LockCursor".
         /// </summary>
         public InputAction @LockCursor => m_Wrapper.m_OnFoot_LockCursor;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/dropItem".
+        /// </summary>
+        public InputAction @dropItem => m_Wrapper.m_OnFoot_dropItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1052,6 +1078,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @LockCursor.started += instance.OnLockCursor;
             @LockCursor.performed += instance.OnLockCursor;
             @LockCursor.canceled += instance.OnLockCursor;
+            @dropItem.started += instance.OnDropItem;
+            @dropItem.performed += instance.OnDropItem;
+            @dropItem.canceled += instance.OnDropItem;
         }
 
         /// <summary>
@@ -1090,6 +1119,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @LockCursor.started -= instance.OnLockCursor;
             @LockCursor.performed -= instance.OnLockCursor;
             @LockCursor.canceled -= instance.OnLockCursor;
+            @dropItem.started -= instance.OnDropItem;
+            @dropItem.performed -= instance.OnDropItem;
+            @dropItem.canceled -= instance.OnDropItem;
         }
 
         /// <summary>
@@ -1388,6 +1420,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLockCursor(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "dropItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDropItem(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

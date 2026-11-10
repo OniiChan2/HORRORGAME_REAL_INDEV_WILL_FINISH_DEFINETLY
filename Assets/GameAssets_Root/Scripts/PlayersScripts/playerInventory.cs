@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerInventory : MonoBehaviour
 {
    
     //Pseudo-Inventory System 
-    [SerializeField] public List<string> Inventory = new List<string>();
+    [SerializeField] public List<ItemScriptableObject> Inventory = new List<ItemScriptableObject>();
 
 
     //Self-Explanatory, Adds said item to player Inventory 
-    public void AddItem(string item)
+    public void AddItem(ItemScriptableObject item)  
     {
         Inventory.Add(item);
         if (Inventory.Contains(item))
@@ -20,7 +21,7 @@ public class playerInventory : MonoBehaviour
 
 
     //Self-Explanatory, Removes said item from player Inventory 
-    public void RemoveItem(string item)
+    public void RemoveItem(ItemScriptableObject item)
     {
         if (Inventory.Contains(item))
         {

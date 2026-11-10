@@ -7,20 +7,25 @@ public class playerInteractables : MonoBehaviour
     public Camera cam;
     [SerializeField] private LayerMask mask;
     [SerializeField] GameObject UI_playerImage; //Player's crosshair 
-    //Ray cast Variables 
-    [SerializeField] private float playerReach = 3f;
+    [SerializeField] private float playerReach = 3f;    //Ray cast Variable
 
     //Sphere cast / Sphere-Overlap Variables 
     [SerializeField] private float sphereInteractableRad = 3f;
     [SerializeField] private LayerMask sphereCastMask;
     private bool InteracatableWasInFrame = false;
-    private Interactable savedInteratable; 
+    private Interactable savedInteratable;
+    private bool isLookingAtInteractable;
 
-
+    //UI Elements 
     private playerUI playerUI;
     private playerInputManager inputManager;
-    private bool isLookingAtInteractable;
-    
+
+
+    //Pick Up System
+    [SerializeField] private Transform ItemHolder;
+    private GameObject HeldInteratable;
+    private bool IsCurrentlyHolding = false;
+    private Rigidbody HeldRb; 
 
     void Start()
     {
@@ -46,15 +51,36 @@ public class playerInteractables : MonoBehaviour
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-            
-                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
-                HitSomethingToInteractWith = true; 
+               
+
+                //Player UI Interactable Variables 
+                Interactable interactable = hitInfo.collider.GetComponent<Interactable>(); //calls of the component or script named "Interactables" 
+              
+                HitSomethingToInteractWith = true; //Updates player UI if the raycast hits something interactable 
                 playerUI.UpdateText(interactable.promptMsg);
+
+
+
+
                 if (inputManager.onFoot.playerInteract.triggered)
                 {
-                    interactable.baseInteract();
+                    if (hitInfo.collider.GetComponent<Rigidbody>() != null && hitInfo.collider.CompareTag("Holdable")) // checks first if the item that has been interacted with is holdable 
+                    {
+                        //Holdable Item Logic 
+                        Rigidbody Itemrb = hitInfo.collider.GetComponent<Rigidbody>();
+                        HeldInteratable = hitInfo.collider.gameObject;
+                        HeldRb = Itemrb;
+
+                        //if so, call the function to pick it up 
+                        Debug.Log("Interacted with something Holdable");
+                        PickUpItem();
+                    }
+                   
+                   interactable.baseInteract(); 
                 }
             }
+            
+         
         }
 
 
@@ -109,5 +135,49 @@ public class playerInteractables : MonoBehaviour
 
         //Updates the state of the collision detection tracker for the next frames to be generated 
         InteracatableWasInFrame = collisionDetectedByPlayer;
+    }
+
+
+
+
+    //Item Pick-Up System 
+
+    private void PickUpItem()
+    {
+        
+        if (!IsCurrentlyHolding)
+        {
+            HeldRb.isKinematic = true;
+            HeldRb.useGravity = false;
+
+            HeldInteratable.transform.SetParent(ItemHolder); //sets its parented game object to the Item Holder game object on the camera 
+            HeldInteratable.transform.localPosition = Vector3.zero; //resets the items local position relative to the parent 
+            HeldInteratable.transform.localRotation = Quaternion.identity; //Sets the Item's rotation to 0,0,0 
+
+            Collider HolddableCollider = HeldInteratable.GetComponent<Collider>();
+            if (HolddableCollider != null) HolddableCollider.enabled = false; //turns off the collider when equipped by the player 
+            IsCurrentlyHolding = true;
+        }
+        else
+        {
+    
+            playerUI.UpdateText("Player is Already Holding an Item");
+
+        }
+    }
+
+    //Item Drop System 
+    public void DropItem()
+    {
+        IsCurrentlyHolding = false; 
+        HeldRb.isKinematic = false;
+        HeldRb.useGravity = true;
+
+        HeldInteratable.transform.SetParent(null); //unsets its parent so it can move freely when dropped 
+        Collider HolddableCollider = HeldInteratable.GetComponent<Collider>();
+        if (HolddableCollider != null) HolddableCollider.enabled = true; //switches it back on so it doesn't fall through the floor 
+
+        HeldInteratable = null;
+        HeldRb = null;
     }
 }

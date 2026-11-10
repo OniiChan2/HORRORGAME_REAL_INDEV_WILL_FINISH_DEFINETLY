@@ -2,18 +2,13 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour
 {
-    public string Key_ItemName;
+    public ItemScriptableObject RedKey_Data;
     [SerializeField] private playerInventory inventory;
-
-    private void Start()
-    {
-        Key_ItemName = gameObject.name;
-    }
 
     public void pickedUp()
     {
-        inventory.AddItem(Key_ItemName);
-        Debug.Log($"Added Item: {Key_ItemName} To Inventory");
-        Destroy(gameObject);
+        inventory.AddItem(RedKey_Data);
+        Debug.Log($"Added Item: {RedKey_Data} To Inventory");
+        if (!gameObject.CompareTag("Holdable"))  Destroy(gameObject);
     }
 }
