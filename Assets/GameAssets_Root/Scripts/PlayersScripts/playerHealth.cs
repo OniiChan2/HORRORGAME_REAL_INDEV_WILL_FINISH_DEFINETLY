@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class playerHealth : MonoBehaviour
 {
+    //player health variables 
     private float health;
     private float LerpTimer; 
     private float maxPlayerHealth = 100f;
@@ -12,10 +13,18 @@ public class playerHealth : MonoBehaviour
     public Image frontHealthBar;
     [SerializeField] private TextMeshProUGUI healthText;
 
+
+    //player stamina variables 
+    private float stamina;
+    public Image frontStaminaBar;
+    [SerializeField] private TextMeshProUGUI staminaText; 
+   
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         health = maxPlayerHealth;
+        stamina = maxPlayerHealth;
 
         
     }
@@ -24,11 +33,10 @@ public class playerHealth : MonoBehaviour
     void Update()
     {
         health = Mathf.Clamp(health, minPlayerHealth, maxPlayerHealth);
-        UpdateHealthUI();
-
-        
-          
-        
+        stamina = Mathf.Clamp(stamina, minPlayerHealth, maxPlayerHealth);
+        UpdateHealthUI();    
+        UpdateStaminaUI();
+    
     }
 
     public void UpdateHealthUI()
@@ -50,6 +58,28 @@ public class playerHealth : MonoBehaviour
             float percentComplete = LerpTimer/ chipSpeed;
             percentComplete *= percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillFrontHealth, HealthDelta, percentComplete);
+        }
+    }
+
+    public void UpdateStaminaUI()
+    {
+        staminaText.text = Mathf.Round(stamina).ToString();
+        float fillStamina = frontStaminaBar.fillAmount;
+        float staminaDelta = stamina / maxPlayerHealth;
+        
+        if( fillStamina > staminaDelta)
+        {
+            LerpTimer += Time.deltaTime;
+            float percentComplete = LerpTimer / chipSpeed;
+            percentComplete *= percentComplete;
+            frontStaminaBar.fillAmount = Mathf.Lerp(fillStamina, staminaDelta, percentComplete);
+        }
+        if (fillStamina < staminaDelta)
+        {
+            LerpTimer += Time.deltaTime;
+            float percentComplete = LerpTimer / chipSpeed;
+            percentComplete *= percentComplete;
+            frontStaminaBar.fillAmount = Mathf.Lerp(fillStamina, staminaDelta, percentComplete);
         }
     }
 
@@ -75,4 +105,12 @@ public class playerHealth : MonoBehaviour
     {
         HealAmount(Random.Range(5, 10));
     }
+
+    public void StaminaDrain(float drainAmount)
+    {
+        Debug.Log("Drain Function Called");
+
+        stamina -= drainAmount;
+        LerpTimer = 0f;
+            }
 }

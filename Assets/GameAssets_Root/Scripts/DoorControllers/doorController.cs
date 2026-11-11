@@ -78,11 +78,9 @@ public class doorController : MonoBehaviour
             
         }
 
-        if(inventory.Inventory.Contains(KeyID))
+        if(inventory.Inventory.Contains(KeyID) && IsLockedDoor)
         {
             OpenDoor();
-            inventory.Inventory.Remove(KeyID);
-            Debug.Log($"Item: {KeyID.Key_ItemName} Rmoeve from Inventory");
             IsLockedDoor = false;
             interactable.promptMsg = "Door Has Been Unlocked!";
 

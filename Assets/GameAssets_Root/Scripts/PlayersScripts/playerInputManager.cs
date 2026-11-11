@@ -24,7 +24,8 @@ public class playerInputManager : MonoBehaviour
         onFoot.testHeal.performed += ctx => health.healPlayer();
         onFoot.testDamage.performed += ctx => health.takeDamage();
         onFoot.playerJump.performed += ctx => movement.playerJump();
-        onFoot.playerSprint.performed += ctx => movement.playerSprint();
+        onFoot.playerSprint.performed += ctx => movement.setSprint(true);
+        onFoot.playerSprint.canceled += ctx => movement.setSprint(false);
         onFoot.playerCrouch.performed += ctx => movement.playerCrouch();
         onFoot.LockCursor.performed += ctx => movement.lockCursor();
         onFoot.dropItem.performed += ctx => interactables.DropItem();

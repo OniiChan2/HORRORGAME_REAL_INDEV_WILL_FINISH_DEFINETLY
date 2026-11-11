@@ -10,8 +10,10 @@ public class playerMovement : MonoBehaviour
     private playerCameraLook playerCameraLook;
     private Vector3 playerSpeed;
     public Transform playerCam;
+    private playerHealth playerHealth;
     [SerializeField] private Animator animator;
     [SerializeField] private float playerAccelerationRate;
+    private playerInputManager playerInputManager;
    
 
     //player controller values
@@ -24,7 +26,7 @@ public class playerMovement : MonoBehaviour
     private float standingCamY = 1.858f;
     private float playerTargetSpeed; 
     private bool isGrounded;
-    public bool isSprinting;
+    public bool isSprinting = false;
     private bool isCrouching;
     private bool lerpCrouch;
     private float moveSpeed;
@@ -41,6 +43,8 @@ public class playerMovement : MonoBehaviour
     {
         Controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<playerHealth>();
+        playerInputManager = GetComponent<playerInputManager>();
         //sets to cursor to be locked when the game starts 
         isCursorLocked = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -49,6 +53,7 @@ public class playerMovement : MonoBehaviour
   
     void Update()
     {
+        
         //ensures that the player is grounded during the crouch animation
         isGrounded = Controller.isGrounded;
         //Crouch Animation and/or mechanic    
@@ -84,9 +89,8 @@ public class playerMovement : MonoBehaviour
                 lerpCrouch = false;
                 crouchTimer = 0f;
             }
-
         }
-
+        playerSprint();
     }
 
    
@@ -125,22 +129,24 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    public void setSprint(bool isSprint)
+    {
+        isSprinting = isSprint;
+    }
+
     public void playerSprint()
     {
       
         //Player's sprint function, changes player speed if sprinting = true 
-        isSprinting = !isSprinting;
         if (isSprinting)
         {
             velocity = 8f;
-          
-            
-           
+            Debug.Log("Player is sprinting.. calling drain function");
+            playerHealth.StaminaDrain(.1f);
         }
         else
         {
             velocity = 5f;
-            
 
         }
     }
