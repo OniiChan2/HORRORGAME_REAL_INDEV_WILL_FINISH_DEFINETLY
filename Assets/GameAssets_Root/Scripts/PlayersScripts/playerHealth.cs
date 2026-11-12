@@ -9,13 +9,14 @@ public class playerHealth : MonoBehaviour
     private float LerpTimer; 
     private float maxPlayerHealth = 100f;
     private float minPlayerHealth = 0f;
+    private float LastDisplayedStamina; 
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     [SerializeField] private TextMeshProUGUI healthText;
 
 
     //player stamina variables 
-    private float stamina;
+    public float stamina;
     public Image frontStaminaBar;
     [SerializeField] private TextMeshProUGUI staminaText; 
    
@@ -25,8 +26,6 @@ public class playerHealth : MonoBehaviour
     {
         health = maxPlayerHealth;
         stamina = maxPlayerHealth;
-
-        
     }
 
     // Update is called once per frame
@@ -63,24 +62,28 @@ public class playerHealth : MonoBehaviour
 
     public void UpdateStaminaUI()
     {
-        staminaText.text = Mathf.Round(stamina).ToString();
+       
+        float roundedStaminaValue = Mathf.Round(stamina);
+
+        if (roundedStaminaValue != LastDisplayedStamina)
+        {
+            LastDisplayedStamina = roundedStaminaValue;
+            staminaText.text = roundedStaminaValue.ToString();
+        }
+
         float fillStamina = frontStaminaBar.fillAmount;
         float staminaDelta = stamina / maxPlayerHealth;
-        
-        if( fillStamina > staminaDelta)
+
+        if (Mathf.Abs(fillStamina - staminaDelta) > 0.01f) 
         {
-            LerpTimer += Time.deltaTime;
-            float percentComplete = LerpTimer / chipSpeed;
-            percentComplete *= percentComplete;
+            float percentComplete = chipSpeed * Time.deltaTime;
             frontStaminaBar.fillAmount = Mathf.Lerp(fillStamina, staminaDelta, percentComplete);
         }
-        if (fillStamina < staminaDelta)
+        else
         {
-            LerpTimer += Time.deltaTime;
-            float percentComplete = LerpTimer / chipSpeed;
-            percentComplete *= percentComplete;
-            frontStaminaBar.fillAmount = Mathf.Lerp(fillStamina, staminaDelta, percentComplete);
+            frontStaminaBar.fillAmount = staminaDelta;
         }
+      
     }
 
 
@@ -108,9 +111,11 @@ public class playerHealth : MonoBehaviour
 
     public void StaminaDrain(float drainAmount)
     {
-        Debug.Log("Drain Function Called");
-
         stamina -= drainAmount;
-        LerpTimer = 0f;
-            }
+    }
+    
+    public void StaminaGain(float gainAmount)
+    {
+        stamina += gainAmount;
+    }
 }

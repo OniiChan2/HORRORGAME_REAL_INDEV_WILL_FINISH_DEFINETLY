@@ -30,11 +30,13 @@ public class playerCameraLook : MonoBehaviour
     {
         StartPos = camHolder.transform.localPosition;
         movement = GetComponent<playerMovement>();
+        Application.targetFrameRate = 75;
     }
 
     private void Update()
     {
         StopHeadBob();
+
     }
 
     //look process for the camera 

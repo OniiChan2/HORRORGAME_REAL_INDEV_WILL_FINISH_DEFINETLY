@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
+
 
 public class playerMovement : MonoBehaviour
 {
@@ -13,13 +15,16 @@ public class playerMovement : MonoBehaviour
     private playerHealth playerHealth;
     [SerializeField] private Animator animator;
     [SerializeField] private float playerAccelerationRate;
+    [SerializeField] private float playerStaminaGainRate;
+    [SerializeField] private float playerStaminaDrainRate;
     private playerInputManager playerInputManager;
    
 
     //player controller values
     private int crouchHeight = 1;
     private int standingHeight = 2;
-    private float velocity = 5f;
+    private float velocity;
+    private float WalkVelocity = 5f; 
     private float RunVelocity = 8f;
     private float jumpForce = 1f;
     private float crouchTimer = 1;
@@ -34,6 +39,7 @@ public class playerMovement : MonoBehaviour
 
     public float cameraHeightDelta = 0.7f;
     public float gravityValue = -9.81f;
+
 
     
 
@@ -136,19 +142,19 @@ public class playerMovement : MonoBehaviour
 
     public void playerSprint()
     {
-      
         //Player's sprint function, changes player speed if sprinting = true 
         if (isSprinting)
         {
-            velocity = 8f;
-            Debug.Log("Player is sprinting.. calling drain function");
-            playerHealth.StaminaDrain(.1f);
+            velocity = RunVelocity;
+            playerHealth.StaminaDrain(playerStaminaDrainRate);
+            isSprinting = (Mathf.Round(playerHealth.stamina) <= 0) ? false : true;
         }
         else
         {
-            velocity = 5f;
-
+            velocity = WalkVelocity;
+            playerHealth.StaminaGain(playerStaminaGainRate);
         }
+
     }
 
     //Lets the player crouch 
@@ -158,10 +164,7 @@ public class playerMovement : MonoBehaviour
         crouchTimer = 0;
         lerpCrouch = true;
 
-    }
-
-    
-    
+    }    
     //Locks the cursor 
     public void lockCursor()
     {
@@ -177,7 +180,5 @@ public class playerMovement : MonoBehaviour
             isCursorLocked = false;
             Debug.Log(isCursorLocked);
         }
-       
     }
-
 }
