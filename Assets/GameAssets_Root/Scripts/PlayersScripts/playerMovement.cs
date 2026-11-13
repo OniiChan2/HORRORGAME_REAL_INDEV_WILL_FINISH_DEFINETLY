@@ -28,7 +28,7 @@ public class playerMovement : MonoBehaviour
     private float RunVelocity = 8f;
     private float jumpForce = 1f;
     private float crouchTimer = 1;
-    private float standingCamY = 1.858f;
+    private float standingCamY = 0f;
     private float playerTargetSpeed; 
     private bool isGrounded;
     public bool isSprinting = false;
