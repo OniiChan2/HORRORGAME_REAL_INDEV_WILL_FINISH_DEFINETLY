@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8847507630265148749
+--- !u!1 &9155277759116976159
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8190158935302122611}
-  - component: {fileID: 3967977072980714749}
-  - component: {fileID: 6677442016630668016}
-  - component: {fileID: 1015459668328739075}
-  - component: {fileID: 3064300375724438830}
-  - component: {fileID: 7429675741526492976}
-  - component: {fileID: 1457217605182381020}
-  - component: {fileID: 5648078557518733566}
-  - component: {fileID: 2891180468522827317}
+  - component: {fileID: 6928617137687561081}
+  - component: {fileID: 4839201951490654123}
+  - component: {fileID: 8728755199357781517}
+  - component: {fileID: 6691721371953249909}
+  - component: {fileID: 4665906334535350252}
+  - component: {fileID: 3170346380107947040}
+  - component: {fileID: 885595070871290996}
+  - component: {fileID: 1123978231004399473}
+  - component: {fileID: 2665574946703104965}
+  - component: {fileID: 5392337806881097998}
   m_Layer: 6
   m_Name: RedKeyPickUp
-  m_TagString: Untagged
+  m_TagString: Holdable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8190158935302122611
+--- !u!4 &6928617137687561081
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9991538, z: -0, w: -0.041131254}
-  m_LocalPosition: {x: 0.281, y: -0.413, z: 0.294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.999, y: 1.125, z: -22.294}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &3967977072980714749
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4839201951490654123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -230,18 +231,18 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5023
+  m_VersionIndex: 5053
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!114 &6677442016630668016
+--- !u!114 &8728755199357781517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
@@ -260,13 +261,13 @@ MonoBehaviour:
     - rid: 3299306888434024535
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
       data: 
---- !u!23 &1015459668328739075
+--- !u!23 &6691721371953249909
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -309,22 +310,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &3064300375724438830
+--- !u!33 &4665906334535350252
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Mesh: {fileID: 0}
---- !u!64 &7429675741526492976
+--- !u!64 &3170346380107947040
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
-  m_Material: {fileID: 0}
+  m_GameObject: {fileID: 9155277759116976159}
+  m_Material: {fileID: 13400000, guid: d501db632f6b0b3479eb7b8986b5dda6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -336,16 +337,16 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &1457217605182381020
+--- !u!114 &885595070871290996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426bdc6d47be7e54fb1a4e0b4a2b51fa, type: 3}
@@ -353,13 +354,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EventOnlyInteractable
   useEvents: 1
   promptMsg: Interact to Take
---- !u!114 &5648078557518733566
+--- !u!114 &1123978231004399473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
+  m_GameObject: {fileID: 9155277759116976159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476f9d557109c344cbfca26201ca0635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyScript
+  Key_Data: {fileID: 11400000, guid: ef7c4548c441f8b40a512007b4efed16, type: 2}
+--- !u!54 &2665574946703104965
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155277759116976159}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5392337806881097998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155277759116976159}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7cbabe6939d3fe4a9947dab4f6bde6d, type: 3}
@@ -367,30 +408,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractionEvents
   onInteraction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2891180468522827317}
-        m_TargetAssemblyTypeName: KeyScript, Assembly-CSharp
-        m_MethodName: pickedUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2891180468522827317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8847507630265148749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476f9d557109c344cbfca26201ca0635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyScript
-  Key_ItemName: 
-  inventory: {fileID: 0}
+      m_Calls: []

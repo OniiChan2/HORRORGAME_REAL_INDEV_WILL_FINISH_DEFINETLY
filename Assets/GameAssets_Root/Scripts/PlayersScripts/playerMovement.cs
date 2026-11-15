@@ -15,8 +15,8 @@ public class playerMovement : MonoBehaviour
     private playerHealth playerHealth;
     [SerializeField] private Animator animator;
     [SerializeField] private float playerAccelerationRate;
-    [SerializeField] private float playerStaminaGainRate;
-    [SerializeField] private float playerStaminaDrainRate;
+    [SerializeField] private float playerStaminaGainRate = 0.2f;
+    [SerializeField] private float playerStaminaDrainRate = -0.3f;
     private playerInputManager playerInputManager;
    
 
